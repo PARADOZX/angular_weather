@@ -16,10 +16,10 @@
     </div>
     <p>{{data.error}}</p>
     
-    <div id="forecast">
+    <div class="ib" id="forecast">
         <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
-        <a href="" ng-show="forecastdays===4" ng-click="forecastdays=8">7-day forecast</a>
-        <a href="" ng-show="forecastdays===8" ng-click="forecastdays=4">3-day forecast</a>
+        <a href="" ng-show="forecastdays===4" ng-click="forecastdays=8; pa_details=false;">7-day forecast</a>
+        <a href="" ng-show="forecastdays===8" ng-click="forecastdays=4; pa_details=false;">3-day forecast</a>
         <ul>
             <li ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
                 {{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}} <br/>
@@ -30,8 +30,34 @@
         </ul>
     </div>
     
-    <div id="forecast-analysis">
-        {{data.precipAnalysis}}
+    <div class="ib" id="precip-analysis">
+        <div id="pa-container">
+            <div id="pa-title">
+                <div ng-show="forecastdays===4">
+                    <span ng-show="{{data.precipAnalysis.precip_three_bool}}">
+                        PRECIP FORECASTED NEXT 3 DAYS <a href="" ng-click="pa_details = true">details</a>
+                    </span>
+                    <span ng-hide="{{data.precipAnalysis.precip_three_bool}}">NO PRECIP FORECASTED NEXT 3 DAYS</span>
+                </div>
+                <div ng-show="forecastdays===8">
+                    <span ng-show="{{data.precipAnalysis.precip_seven_bool}}">
+                        PRECIP FORECASTED NEXT 7 DAYS <a href="" ng-click="pa_details = true">details</a>
+                    </span>
+                    <span ng-hide="{{data.precipAnalysis.precip_seven_bool}}">NO PRECIP FORECASTED NEXT 7 DAYS</span>
+                </div>
+            </div>
+            <div id="pa-details" ng-show="pa_details">
+                <ul>
+                    <li ng-repeat="day in data.precipAnalysis.precip_data" ng-if="$index < forecastdays-1">
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="weekend-analysis">
+        
     </div>
 </div>
 

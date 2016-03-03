@@ -161,10 +161,6 @@ app.service('cityWeatherData', function($http, $q, $location, $route, $rootScope
         results.precip_seven_rain = precip_seven_rain;
         results.precip_seven_snow = precip_seven_snow;
         
-        console.log(results);
-        
-        
-       
         return results;
     };
     

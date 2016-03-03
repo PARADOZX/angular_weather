@@ -5,7 +5,9 @@ app.controller('homepageCtrl', ['$scope', '$location', 'cityWeatherData', functi
 
     $scope.data = cityWeatherData.getCache(); 
     
+    console.log($scope.data);
     $scope.farenheit = true;
+    $scope.pa_details = false;
     $scope.forecastdays = 4;
     
 }]);

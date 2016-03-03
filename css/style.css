@@ -6,3 +6,7 @@
 #current-temp a {
     text-decoration: none;
 }
+.ib {
+    display: inline-block;
+    vertical-align: top;
+}
