@@ -1,0 +1,8 @@
+#change {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+#current-temp a {
+    text-decoration: none;
+}

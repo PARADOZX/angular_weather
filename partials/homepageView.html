@@ -1,0 +1,37 @@
+<div ng-include="'partials/searchByCity.html'"></div>
+
+<div id="home-container" change-background ng-controller="homepageCtrl">
+    <h2>{{data.location}}</h2>
+    <p>{{data.weather}}</p>
+    <p>Local Time: {{data.local_time}}</p>
+    <p>{{data.last_updated}}</p>
+    
+    <div id="current-temp">
+        Current Temp: 
+        <span ng-show="farenheit">{{data.temp_f}}&deg;F</span> 
+        <span ng-hide="farenheit">{{data.temp_c}}&deg;C</span>
+        <br/>
+        <a href="" ng-click="farenheit=true">F&deg;</a> 
+        <a href="" ng-click="farenheit=false">C&deg;</a>
+    </div>
+    <p>{{data.error}}</p>
+    
+    <div id="forecast">
+        <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
+        <a href="" ng-show="forecastdays===4" ng-click="forecastdays=8">7-day forecast</a>
+        <a href="" ng-show="forecastdays===8" ng-click="forecastdays=4">3-day forecast</a>
+        <ul>
+            <li ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
+                {{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}} <br/>
+                {{day.conditions}} <br/>
+                High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span>
+                Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span>
+            </li>
+        </ul>
+    </div>
+    
+    <div id="forecast-analysis">
+        {{data.precipAnalysis}}
+    </div>
+</div>
+
