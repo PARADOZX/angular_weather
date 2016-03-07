@@ -148,6 +148,10 @@ app.service('cityWeatherData', function($http, $q, $location, $route, $rootScope
             
             day_data.month = forecast_seven[day].date.monthname;
             day_data.day = forecast_seven[day].date.day;
+            day_data.rain_day = forecast_seven[day].qpf_day.in;
+            day_data.rain_night = forecast_seven[day].qpf_night.in;
+            day_data.snow_day = forecast_seven[day].snow_day.in;
+            day_data.snow_night = forecast_seven[day].snow_night.in;
             
             results.precip_data[day] = day_data;
             
@@ -162,6 +166,7 @@ app.service('cityWeatherData', function($http, $q, $location, $route, $rootScope
         results.precip_seven_snow = precip_seven_snow;
         
         return results;
+        
     };
     
     this.getCache = function(){

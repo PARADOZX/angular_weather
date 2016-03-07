@@ -5,6 +5,10 @@ app.controller('homepageCtrl', ['$scope', '$location', 'cityWeatherData', functi
 
     $scope.data = cityWeatherData.getCache(); 
     
+    $scope.filter_precip = function(element) {
+        if ( (element.rain || element.snow) && element.day < $scope.data.forecast[0].date.day + $scope.forecastdays) return true;
+    };
+    
     console.log($scope.data);
     $scope.farenheit = true;
     $scope.pa_details = false;

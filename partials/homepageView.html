@@ -48,8 +48,10 @@
             </div>
             <div id="pa-details" ng-show="pa_details">
                 <ul>
-                    <li ng-repeat="day in data.precipAnalysis.precip_data" ng-if="$index < forecastdays-1">
-                        
+                    <li ng-repeat="day in data.precipAnalysis.precip_data | filter: filter_precip">
+                        {{day.month}} {{day.day}} <br/>
+                        <precip-warning ng-if="day.rain" ng-data-obj="{{day}}" ng-data-type="rain">Rain {{day.rain}} in.</precip-warning>
+                        <precip-warning ng-if="day.snow" ng-data-obj="{{day}}" ng-data-type="snow">Snow {{day.snow}} in.</precip-warning>
                     </li>
                 </ul>
             </div>
