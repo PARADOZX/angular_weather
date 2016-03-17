@@ -9,6 +9,11 @@ app.controller('homepageCtrl', ['$scope', '$location', 'cityWeatherData', functi
         if ( (element.rain || element.snow) && element.day < $scope.data.forecast[0].date.day + $scope.forecastdays) return true;
     };
     
+    $scope.filter_weekend = function(element) {
+        if ( element.date.weekday == "Saturday" || element.date.weekday == "Sunday") return true;  
+        return false;
+    };
+    
     console.log($scope.data);
     $scope.farenheit = true;
     $scope.pa_details = false;
