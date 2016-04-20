@@ -1,10 +1,10 @@
-<div ng-controller="mainWeatherCtrl">
+<div id="weather-form" ng-controller="mainWeatherCtrl">
     <form name="getWeatherForm" ng-submit="getWeather(location)">
         <input type="text" name="city" ng-model="location.city" placeholder="city" ng-required="true" />
-        <span ng-show="getWeatherForm.city.$invalid">Please enter city.</span><br/>
+        <div class="form-error" ng-show="getWeatherForm.city.$invalid">Enter city name</div>
         <input type="text" name="state" ng-model="location.state" placeholder="state abbrev." ng-required="true" ng-minlength="2" ng-maxlength="2" />
-        <span ng-show="getWeatherForm.state.$invalid">Please enter a 2 character state abbreviation.</span><br/>
-        <button type="submit" ng-disabled="getWeatherForm.$invalid">click</button>
+        <div class="form-error" ng-show="getWeatherForm.state.$invalid">Enter <span ng-class="{red : getWeatherForm.state.$dirty}">2 character</span> state abbreviation</div>
+        <button type="submit" ng-disabled="getWeatherForm.$invalid">search by city</button>
     </form>
     <p>{{weatherDataError}}</p>
 </div>

@@ -19,4 +19,5 @@ app.controller('mainWeatherCtrl', ['$scope', '$location', 'cityWeatherData', fun
             
         } 
     };
+    
 }]);

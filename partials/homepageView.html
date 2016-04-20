@@ -1,75 +1,144 @@
-<div ng-include="'partials/searchByCity.html'"></div>
-
-<div id="home-container" change-background ng-controller="homepageCtrl">
-    <h2>{{data.location}}</h2>
-    <p>{{data.weather}}</p>
-    <p>Local Time: {{data.local_time}}</p>
-    <p>{{data.last_updated}}</p>
+<header id="main-header" ng-controller="headerCtrl">
+<div style="height: 110px">
+    <h1 class="ib">Weather App</h1>
+    <div id="mobile-header" class="ib none" ng-click="showMobileSearch()">
+        <a id="mobile-button">
+            <div>
+                <div id="menu-lines-top" class="menu-lines"></div>
+                <div id="menu-lines-middle" class="menu-lines"></div>
+                <div id="menu-lines-bottom" class="menu-lines"></div>
+            </div>
+        </a>
+    </div>
+    <div id="mobile-menu" class="none" ng-include="'partials/mobileMenu.html'"></div>
+    <div id="header-search" class="ib mobileDisplayNone" ng-include="'partials/searchByCity.html'"></div>
+</div>
+</header>
+<!--<div id="home-container" change-background ng-controller="homepageCtrl">-->
+<div id="home-container" ng-controller="homepageCtrl">
     
-    <div id="current-temp">
-        Current Temp: 
-        <span ng-show="farenheit">{{data.temp_f}}&deg;F</span> 
-        <span ng-hide="farenheit">{{data.temp_c}}&deg;C</span>
-        <br/>
+    <section id="location-info">
+        <h2>{{data.location}}</h2>
+        <p class="small">Local Time: {{data.local_time}}</p>
         <a href="" ng-click="farenheit=true">F&deg;</a> 
         <a href="" ng-click="farenheit=false">C&deg;</a>
-    </div>
-    <p>{{data.error}}</p>
+    </section>
     
-    <div class="ib" id="forecast">
-        <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
-        <a href="" ng-show="forecastdays===4" ng-click="forecastdays=8; pa_details=false;">7-day forecast</a>
-        <a href="" ng-show="forecastdays===8" ng-click="forecastdays=4; pa_details=false;">3-day forecast</a>
+    <section ng-show="data.alerts.length > 0" id="advisory">
+        <h3>Alerts</h3>
         <ul>
-            <li ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
-                {{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}} <br/>
-                {{day.conditions}} <br/>
-                High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span>
-                Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span>
+            <li ng-repeat="alert in data.alerts">
+                {{alert.description}}
+                <advisory message="{{alert.message}}"></advisory>
             </li>
         </ul>
-    </div>
+    </section>
     
-    <div class="ib" id="precip-analysis">
-        <div id="pa-container">
-            <div id="pa-title">
-                <div ng-show="forecastdays===4">
-                    <span ng-show="{{data.precipAnalysis.precip_three_bool}}">
-                        PRECIP FORECASTED NEXT 3 DAYS <a href="" ng-click="pa_details = true">details</a>
-                    </span>
-                    <span ng-hide="{{data.precipAnalysis.precip_three_bool}}">NO PRECIP FORECASTED NEXT 3 DAYS</span>
+    <section>
+        <section id="current-forecast" class="ib">
+            <div>
+                <p>{{data.weather}}</p>
+                <div id="current-temp">
+                    <span ng-show="farenheit">{{data.temp_f}}&deg;F</span> 
+                    <span ng-hide="farenheit">{{data.temp_c}}&deg;C</span>
                 </div>
-                <div ng-show="forecastdays===8">
-                    <span ng-show="{{data.precipAnalysis.precip_seven_bool}}">
-                        PRECIP FORECASTED NEXT 7 DAYS <a href="" ng-click="pa_details = true">details</a>
-                    </span>
-                    <span ng-hide="{{data.precipAnalysis.precip_seven_bool}}">NO PRECIP FORECASTED NEXT 7 DAYS</span>
-                </div>
+                <p class="small">{{data.last_updated}}</p>
+                <p>{{data.error}}</p>
             </div>
-            <div id="pa-details" ng-show="pa_details">
-                <ul>
-                    <li ng-repeat="day in data.precipAnalysis.precip_data | filter: filter_precip">
-                        {{day.month}} {{day.day}} <br/>
-                        <precip-warning ng-if="day.rain" ng-data-obj="{{day}}" ng-data-type="rain">Rain {{day.rain}} in.</precip-warning>
-                        <precip-warning ng-if="day.snow" ng-data-obj="{{day}}" ng-data-type="snow">Snow {{day.snow}} in.</precip-warning>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+        </section><section change-background id="current-forecast-pic" class="ib" style="background-color:blue;">
+            <!-- forecast picture section-->
+        </section>
+    </section>
     
-    <div class="ib" id="weekend-analysis">
-        <div id="wa-container">
-            <div id="wa-title">
-                10-day Weekend Outlook
-            </div>
-            <div id="wa-details">
-                <ul>
-                    <li ng-repeat="day in data.forecast | filter: filter_weekend">{{day.date.monthname}}{{day.date.day}}</li>
-                </ul>
-            </div>
-            <!--<weekend></weekend>-->
+    
+    <section id="forecast">
+        <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
+        <div>
+            <a href="" ng-show="forecastdays===4" ng-click="forecastdays=8; pa_details=false;">7-day forecast</a>
+            <a href="" ng-show="forecastdays===8" ng-click="forecastdays=4; pa_details=false;">3-day forecast</a>
         </div>
-    </div>
+        <scroller>
+            <ul>
+                <li class="ib a" id="li{{$index}}" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
+                    {{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}} <br/>
+                    {{day.conditions}} <br/>
+                    High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span>
+                    Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span>
+                </li>
+                
+                <!--<li id="li1" class="ib a">-->
+                <!--    man1-->
+                <!--</li>-->
+                <!--<li id="li2" class="ib a">-->
+                <!--    man2-->
+                <!--</li>-->
+                <!--<li id="li3" class="ib a">-->
+                <!--    man3-->
+                <!--</li>-->
+                <!--<li id="li4" class="ib a">-->
+                <!--    man1-->
+                <!--</li>-->
+                <!--<li id="li5" class="ib a">-->
+                <!--    man2-->
+                <!--</li>-->
+                <!--<li id="li6" class="ib a">-->
+                <!--    man3-->
+                <!--</li>-->
+            </ul>
+        </scroller>
+    </section>
+    
+    <section>
+        <section class="ib" id="precip-analysis" style="background-color: purple">
+            <div id="pa-container">
+                <div id="pa-title">
+                    <div ng-show="forecastdays===4">
+                        <span ng-show="{{data.precipAnalysis.precip_three_bool}}">
+                            PRECIP FORECASTED NEXT 3 DAYS <a href="" ng-click="pa_details = true">details</a>
+                        </span>
+                        <span ng-hide="{{data.precipAnalysis.precip_three_bool}}">NO PRECIP FORECASTED NEXT 3 DAYS</span>
+                    </div>
+                    <div ng-show="forecastdays===8">
+                        <span ng-show="{{data.precipAnalysis.precip_seven_bool}}">
+                            PRECIP FORECASTED NEXT 7 DAYS <a href="" ng-click="pa_details = true">details</a>
+                        </span>
+                        <span ng-hide="{{data.precipAnalysis.precip_seven_bool}}">NO PRECIP FORECASTED NEXT 7 DAYS</span>
+                    </div>
+                </div>
+                <div id="pa-details" ng-show="pa_details">
+                    <ul>
+                        <li ng-repeat="day in data.precipAnalysis.precip_data | filter: filter_precip">
+                            {{day.month}} {{day.day}} <br/>
+                            <precip-warning ng-if="day.rain" ng-data-obj="{{day}}" ng-data-type="rain">Rain {{day.rain}} in.</precip-warning>
+                            <precip-warning ng-if="day.snow" ng-data-obj="{{day}}" ng-data-type="snow">Snow {{day.snow}} in.</precip-warning>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    
+        <section class="ib" id="weekend-analysis" style="background-color: orange">
+            <div id="wa-container">
+                <div id="wa-title">
+                    10-day Weekend Outlook
+                </div>
+                <div id="wa-details">
+                    <ul>
+                        <!-- 
+                            need to increase precip data to include current day and range to 10 days to accommodate the 10-day 
+                            weekend outlook or filter the weekend outlook to exclude the current day and limit to 7 day weekend 
+                            outlook.   
+                        -->
+                        <li ng-repeat="day2 in data.forecast | filter: filter_weekend">{{day2.date.monthname}}{{day2.date.day}}
+                            <div ng-repeat="day in data.precipAnalysis.precip_data">
+                                <precip-warning ng-if="day2.date.day === day.day && day.rain" ng-data-obj="{{day}}" ng-data-type="rain">Rain {{day.rain}} in.</precip-warning>
+                                <precip-warning ng-if="day2.date.day === day.day && day.snow" ng-data-obj="{{day}}" ng-data-type="snow">Snow {{day.snow}} in.</precip-warning>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
 </div>
 

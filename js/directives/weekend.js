@@ -1,6 +1,6 @@
 app.directive('weekend', function(){
     
-    var template = "<div ng-repeat='i in dataCopy.forecast'>hi</div>",
+    var template = "<div>hello this is a {{test}}</div>",
     
         controller = function($scope){
         //deep copy data to dataCopy in controller so we can make changes freely without changing original data.

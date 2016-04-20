@@ -11,8 +11,14 @@ app.config(function($routeProvider){
         .when('/home', {
             templateUrl: 'partials/homepageView.html'
         })
-        .when('/cookies', {
-            templateUrl: 'partials/cookies.html'
+        // .when('/mobileMenu', {
+        //     templateUrl: 'partials/mobileMenuView.html'
+        // })
+        .when('/test', {
+            templateUrl: 'partials/testView.html'
         })
+        // .when('/cookies', {
+        //     templateUrl: 'partials/cookies.html'
+        // })
         .otherwise({redirectTo: '/'});
 });

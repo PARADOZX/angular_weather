@@ -36,7 +36,8 @@ app.service('cityWeatherData', function($http, $q, $location, $route, $rootScope
         
         var urls = [
             'http://api.wunderground.com/api/' + wunderground_API_key + '/conditions/q/' + state + '/' + city + '.json',
-            'http://api.wunderground.com/api/' + wunderground_API_key + '/forecast10day/q/' + state + '/' + city + '.json'
+            'http://api.wunderground.com/api/' + wunderground_API_key + '/forecast10day/q/' + state + '/' + city + '.json',
+            'http://api.wunderground.com/api/' + wunderground_API_key + '/alerts/q/' + state + '/' + city + '.json'
         ];
         
         var promise = asyncService.loadDataFromUrls(urls)
@@ -47,7 +48,7 @@ app.service('cityWeatherData', function($http, $q, $location, $route, $rootScope
                 console.log(response); //debug
         
                 if(!response[0].data.current_observation) {
-                    //display error via rootscope -- is there a better way to do this?
+                    //display error via rootscope -- is there a better way to do this?  error is shown on searchByCity partial
                     if(response[0].data.response.error){
                         $rootScope.weatherDataError = response[0].data.response.error.description;
                     } else $rootScope.weatherDataError = "No cities match your search query";
@@ -60,6 +61,7 @@ app.service('cityWeatherData', function($http, $q, $location, $route, $rootScope
                     var reload = false,
                         co = response[0].data.current_observation,
                         fc = response[1].data.forecast.simpleforecast;
+                        al = response[2].data.alerts;
                     
                     //if that.cache already populated set reload boolean flag to true    
                     if(Object.keys(that.cache).length !== 0) reload = true;
@@ -70,6 +72,10 @@ app.service('cityWeatherData', function($http, $q, $location, $route, $rootScope
                     data.location = co.display_location.full;
                     data.temp_f = co.temp_f;
                     data.temp_c = co.temp_c;
+                    
+                    var index = co.observation_time_rfc822.indexOf('-');
+                    if(index !== -1) co.observation_time_rfc822 = co.observation_time_rfc822.slice(0, index-1);
+                    
                     data.local_time = co.observation_time_rfc822;
                     data.last_updated = co.observation_time;
                     data.weather = co.weather;
@@ -80,6 +86,11 @@ app.service('cityWeatherData', function($http, $q, $location, $route, $rootScope
                     }
                     
                     data.precipAnalysis = that.analyzePrecip(data.forecast);
+                    
+                    data.alerts = [];
+                    for (alert in al) {
+                        data.alerts.push(al[alert]);
+                    }
                     
                     //persists data between views
                     that.cache = data;

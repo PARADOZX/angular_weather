@@ -6,7 +6,7 @@ app.controller('homepageCtrl', ['$scope', '$location', 'cityWeatherData', functi
     $scope.data = cityWeatherData.getCache(); 
     
     $scope.filter_precip = function(element) {
-        if ( (element.rain || element.snow) && element.day < $scope.data.forecast[0].date.day + $scope.forecastdays) return true;
+        if ( (element.rain || element.snow) && element.day < $scope.data.forecast[$scope.forecastdays].date.day) return true;
     };
     
     $scope.filter_weekend = function(element) {
