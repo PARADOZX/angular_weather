@@ -34,14 +34,19 @@ button {
     width: 50%;
     height: 200px;
 }
+#forecast {
+    margin: 30px;
+}
 #forecast ul {
     margin: 0 auto;
 }
 #forecast ul li {
     /*display: inline-block;*/
     width: 200px;
-    border: 1px black solid;
+    height: 120px;
+    border: 1px gray solid;
     margin: 5px;
+    border-radius: 5px;
 }
 .form-error {
     font-size: 12px;
@@ -155,12 +160,28 @@ header:after {
 .none {
     display: none;
 }
+#pa-container, #wa-container {
+    margin: 30px;
+}
+#precip-analysis {
+    width: 50%;
+}
+#precip-analysis ul, #weekend-analysis ul{
+    list-style: none;
+}
 #preview {
     cursor: pointer;
     color: blue;
 }
 .red {
     color: red;
+}
+.scroll-button {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+#scroll-ctnr {
+    text-align: center;
 }
 .small {
     font-size: 12px;
@@ -169,6 +190,9 @@ header:after {
     margin: 70px;
     font-size: 42px;
     text-align: center;
+}
+#weekend-analysis {
+    width: 50%;
 }
 .full-length-search button {
     width: 100%;
@@ -194,7 +218,7 @@ header:after {
     }
 }
 @media screen and (max-width: 600px) {
-    #current-forecast {
+    #current-forecast, #precip-analysis, #weekend-analysis {
         width: 100%;
     }
     #current-forecast-pic {

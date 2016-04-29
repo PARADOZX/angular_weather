@@ -1,4 +1,4 @@
-app.controller('homepageCtrl', ['$scope', '$location', 'cityWeatherData', function($scope, $location, cityWeatherData){
+app.controller('homepageCtrl', ['$scope', '$location', '$rootScope','cityWeatherData', function($scope, $location, $rootScope, cityWeatherData){
 
     //redirect to title page if cityWeatherData cache not populated
     if(Object.keys(cityWeatherData.getCache()).length === 0) $location.path('/');
@@ -12,6 +12,18 @@ app.controller('homepageCtrl', ['$scope', '$location', 'cityWeatherData', functi
     $scope.filter_weekend = function(element) {
         if ( element.date.weekday == "Saturday" || element.date.weekday == "Sunday") return true;  
         return false;
+    };
+    
+    $scope.seven_days = function(){
+        $scope.forecastdays=8; 
+        $scope.pa_details=false;  
+        $rootScope.$broadcast('seven');
+    };
+    
+    $scope.three_days = function(){
+        $scope.forecastdays=4; 
+        $scope.pa_details=false;
+        $rootScope.$broadcast('three');
     };
     
     console.log($scope.data);

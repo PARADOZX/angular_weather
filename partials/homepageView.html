@@ -54,10 +54,11 @@
     <section id="forecast">
         <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
         <div>
-            <a href="" ng-show="forecastdays===4" ng-click="forecastdays=8; pa_details=false;">7-day forecast</a>
-            <a href="" ng-show="forecastdays===8" ng-click="forecastdays=4; pa_details=false;">3-day forecast</a>
+            <a href="" ng-show="forecastdays===4" ng-click="seven_days()">7-day forecast</a>
+            <a href="" ng-show="forecastdays===8" ng-click="three_days()">3-day forecast</a>
         </div>
         <scroller>
+            <div id="forecast-prev" class="scroll-button" ng-click="previous()">prev</div>
             <ul>
                 <li class="ib a" id="li{{$index}}" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
                     {{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}} <br/>
@@ -65,44 +66,26 @@
                     High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span>
                     Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span>
                 </li>
-                
-                <!--<li id="li1" class="ib a">-->
-                <!--    man1-->
-                <!--</li>-->
-                <!--<li id="li2" class="ib a">-->
-                <!--    man2-->
-                <!--</li>-->
-                <!--<li id="li3" class="ib a">-->
-                <!--    man3-->
-                <!--</li>-->
-                <!--<li id="li4" class="ib a">-->
-                <!--    man1-->
-                <!--</li>-->
-                <!--<li id="li5" class="ib a">-->
-                <!--    man2-->
-                <!--</li>-->
-                <!--<li id="li6" class="ib a">-->
-                <!--    man3-->
-                <!--</li>-->
             </ul>
+            <div id="forecast-next" class="scroll-button" ng-click="next()">next</div>
         </scroller>
     </section>
     
     <section>
-        <section class="ib" id="precip-analysis" style="background-color: purple">
+        <section class="ib" id="precip-analysis">
             <div id="pa-container">
                 <div id="pa-title">
                     <div ng-show="forecastdays===4">
-                        <span ng-show="{{data.precipAnalysis.precip_three_bool}}">
+                        <h3 ng-show="{{data.precipAnalysis.precip_three_bool}}">
                             PRECIP FORECASTED NEXT 3 DAYS <a href="" ng-click="pa_details = true">details</a>
-                        </span>
-                        <span ng-hide="{{data.precipAnalysis.precip_three_bool}}">NO PRECIP FORECASTED NEXT 3 DAYS</span>
+                        </h3>
+                        <h3 ng-hide="{{data.precipAnalysis.precip_three_bool}}">NO PRECIP FORECASTED NEXT 3 DAYS</h3>
                     </div>
                     <div ng-show="forecastdays===8">
-                        <span ng-show="{{data.precipAnalysis.precip_seven_bool}}">
+                        <h3 ng-show="{{data.precipAnalysis.precip_seven_bool}}">
                             PRECIP FORECASTED NEXT 7 DAYS <a href="" ng-click="pa_details = true">details</a>
-                        </span>
-                        <span ng-hide="{{data.precipAnalysis.precip_seven_bool}}">NO PRECIP FORECASTED NEXT 7 DAYS</span>
+                        </h3>
+                        <h3 ng-hide="{{data.precipAnalysis.precip_seven_bool}}">NO PRECIP FORECASTED NEXT 7 DAYS</h3>
                     </div>
                 </div>
                 <div id="pa-details" ng-show="pa_details">
@@ -115,13 +98,11 @@
                     </ul>
                 </div>
             </div>
-        </section>
-    
-        <section class="ib" id="weekend-analysis" style="background-color: orange">
+        </section><section class="ib" id="weekend-analysis">
             <div id="wa-container">
-                <div id="wa-title">
+                <h3 id="wa-title">
                     10-day Weekend Outlook
-                </div>
+                </h3>
                 <div id="wa-details">
                     <ul>
                         <!-- 
