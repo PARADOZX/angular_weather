@@ -18,8 +18,8 @@
 <div id="home-container" ng-controller="homepageCtrl">
     
     <section id="location-info">
-        <h2>{{data.location}}</h2>
-        <p class="small">Local Time: {{data.local_time}}</p>
+        <p>{{data.location}}</p>
+        <p id="location-time" class="mobileDisplayNone">Local Time: {{data.local_time}}</p>
         <a href="" ng-click="farenheit=true">F&deg;</a> 
         <a href="" ng-click="farenheit=false">C&deg;</a>
     </section>
@@ -35,36 +35,38 @@
     </section>
     
     <section>
-        <section id="current-forecast" class="ib">
+        <section change-background id="current-forecast" class="ib">
             <div>
-                <p>{{data.weather}}</p>
+                <p id="current-desc">{{data.weather}}</p>
                 <div id="current-temp">
                     <span ng-show="farenheit">{{data.temp_f}}&deg;F</span> 
                     <span ng-hide="farenheit">{{data.temp_c}}&deg;C</span>
                 </div>
-                <p class="small">{{data.last_updated}}</p>
+                <p id="current-update" class="mobileDisplayNone">{{data.last_updated}}</p>
                 <p>{{data.error}}</p>
             </div>
-        </section><section change-background id="current-forecast-pic" class="ib" style="background-color:blue;">
-            <!-- forecast picture section-->
         </section>
+        <!--<section change-background id="current-forecast-pic" class="ib" style="background-color:blue;">-->
+            <!-- forecast picture section-->
+        <!--</section>-->
     </section>
     
     
     <section id="forecast">
         <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
         <div>
-            <a href="" ng-show="forecastdays===4" ng-click="seven_days()">7-day forecast</a>
-            <a href="" ng-show="forecastdays===8" ng-click="three_days()">3-day forecast</a>
+            <a href="" ng-show="forecastdays===4" ng-click="seven_days()">(7-day)</a>
+            <a href="" ng-show="forecastdays===8" ng-click="three_days()">(3-day)</a>
         </div>
         <scroller>
             <div id="forecast-prev" class="scroll-button" ng-click="previous()">prev</div>
             <ul>
                 <li class="ib a" id="li{{$index}}" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
-                    {{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}} <br/>
-                    {{day.conditions}} <br/>
-                    High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span>
-                    Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span>
+                    <p>{{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}}</p>
+                    <p>{{day.conditions}}</p>
+                    <p>High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span></p>
+                    <p>Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span></p>
+                    <forecast-icon class="forecast-icons" icon="day.icon"></forecast-icon>
                 </li>
             </ul>
             <div id="forecast-next" class="scroll-button" ng-click="next()">next</div>
