@@ -51,26 +51,48 @@
         <!--</section>-->
     </section>
     
-    
     <section id="forecast">
         <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
         <div>
             <a href="" ng-show="forecastdays===4" ng-click="seven_days()">(7-day)</a>
-            <a href="" ng-show="forecastdays===8" ng-click="three_days()">(3-day)</a>
+            <!--<a href="" ng-show="forecastdays===8" ng-click="three_days()">(3-day)</a>-->
         </div>
-        <scroller>
-            <div id="forecast-prev" class="scroll-button" ng-click="previous()">prev</div>
-            <ul>
-                <li class="ib a" id="li{{$index}}" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
+        
+        <!--<scroller>-->
+        <!--    <div id="forecast-prev" class="scroll-button" ng-click="previous()">prev</div>-->
+        <!--    <ul>-->
+        <!--        <li class="ib a" id="li{{$index}}" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">-->
+        <!--            <p>{{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}}</p>-->
+        <!--            <p>{{day.conditions}}</p>-->
+        <!--            <p>High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span></p>-->
+        <!--            <p>Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span></p>-->
+        <!--            <forecast-icon class="forecast-icons" icon="day.icon"></forecast-icon>-->
+        <!--        </li>-->
+        <!--    </ul>-->
+        <!--    <div id="forecast-next" class="scroll-button" ng-click="next()">next</div>-->
+        <!--</scroller>-->
+        
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
                     <p>{{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}}</p>
                     <p>{{day.conditions}}</p>
                     <p>High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span></p>
                     <p>Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span></p>
                     <forecast-icon class="forecast-icons" icon="day.icon"></forecast-icon>
-                </li>
-            </ul>
-            <div id="forecast-next" class="scroll-button" ng-click="next()">next</div>
-        </scroller>
+                </div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+            
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            
+            <!-- If we need scrollbar -->
+            <!--<div class="swiper-scrollbar"></div>-->
+        </div>
+        
     </section>
     
     <section>

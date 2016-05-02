@@ -1,4 +1,4 @@
-app.controller('homepageCtrl', ['$scope', '$location', '$rootScope','cityWeatherData', function($scope, $location, $rootScope, cityWeatherData){
+app.controller('homepageCtrl', ['$scope', '$location', '$rootScope','cityWeatherData', 'slider', function($scope, $location, $rootScope, cityWeatherData, slider){
 
     //redirect to title page if cityWeatherData cache not populated
     if(Object.keys(cityWeatherData.getCache()).length === 0) $location.path('/');
@@ -18,17 +18,26 @@ app.controller('homepageCtrl', ['$scope', '$location', '$rootScope','cityWeather
         $scope.forecastdays=8; 
         $scope.pa_details=false;  
         $rootScope.$broadcast('seven');
+        
+        slider.init();
     };
     
     $scope.three_days = function(){
         $scope.forecastdays=4; 
         $scope.pa_details=false;
         $rootScope.$broadcast('three');
+        
+        slider.init();
     };
     
     console.log($scope.data);
     $scope.farenheit = true;
     $scope.pa_details = false;
-    $scope.forecastdays = 4;
     
+    //disable 3-day option
+    // $scope.forecastdays = 4;
+    $scope.forecastdays = 8;
+    
+    slider.init();
+        
 }]);

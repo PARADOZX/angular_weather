@@ -164,22 +164,6 @@ header:after {
     background-color: white;
     z-index: 999;
 }
-/*#mobile-menu button {*/
-/*    width: 170px;*/
-/*    height: 15px;*/
-/*    font-size: 10px;*/
-/*    background-color: #147efb;*/
-/*    border: none;*/
-/*    border-radius: 3px;*/
-/*    color: #ffffff;*/
-/*}*/
-/*#mobile-menu input[type="text"] {*/
-/*    width: 170px;*/
-/*    height: 15px;*/
-/*    font-size: 10px;*/
-/*    text-align: center;*/
-/*    border-radius: 3px;*/
-/*}*/
 .none {
     display: none;
 }
@@ -205,6 +189,14 @@ header:after {
 }
 #scroll-ctnr {
     text-align: center;
+}
+.swiper-container {
+    width: 80%;
+    height: 300px;
+} 
+.swiper-slide {
+    border: 1px black solid;
+    width: 100px;
 }
 #title-header {
     margin: 70px;
