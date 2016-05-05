@@ -33,6 +33,7 @@ app.controller('homepageCtrl', ['$scope', '$location', '$rootScope','cityWeather
     console.log($scope.data);
     $scope.farenheit = true;
     $scope.pa_details = false;
+    $scope.wa_details = false;
     
     //disable 3-day option
     // $scope.forecastdays = 4;

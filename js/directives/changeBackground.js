@@ -8,7 +8,7 @@ app.directive('changeBackground', function(httpService){
                 
                 var forecast = scope.data.weather,
                     image = forecast.replace(/\s/g, '').toLowerCase(),
-                    imagePath = "img/" + image + ".jpg",
+                    imagePath = "img/" + image + "-back.jpg",
                     currentURL = window.location.href,
                     newURL = currentURL.substring(0, currentURL.indexOf('index'));
                 

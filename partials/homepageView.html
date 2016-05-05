@@ -17,15 +17,19 @@
 <!--<div id="home-container" change-background ng-controller="homepageCtrl">-->
 <div id="home-container" ng-controller="homepageCtrl">
     
-    <section id="location-info">
-        <p>{{data.location}}</p>
-        <p id="location-time" class="mobileDisplayNone">Local Time: {{data.local_time}}</p>
-        <a href="" ng-click="farenheit=true">F&deg;</a> 
-        <a href="" ng-click="farenheit=false">C&deg;</a>
+    <section id="top-bar">
+        <div id="location-info" class="ib">
+            <p>{{data.location}}</p>
+            <p id="location-time" class="mobileDisplayNone">Local Time: {{data.local_time}}</p>
+        </div>
+        <div id="temp-toggle" class="ib">
+            <a href="" ng-click="farenheit=true">F&deg;</a> 
+            <a href="" ng-click="farenheit=false">C&deg;</a>
+        </div>
     </section>
     
     <section ng-show="data.alerts.length > 0" id="advisory">
-        <h3>Alerts</h3>
+        <h3>Alert</h3>
         <ul>
             <li ng-repeat="alert in data.alerts">
                 {{alert.description}}
@@ -34,8 +38,8 @@
         </ul>
     </section>
     
-    <section>
-        <section change-background id="current-forecast" class="ib">
+    <section change-background>
+        <section id="current-forecast" class="ib">
             <div>
                 <p id="current-desc">{{data.weather}}</p>
                 <div id="current-temp">
@@ -49,67 +53,68 @@
         <!--<section change-background id="current-forecast-pic" class="ib" style="background-color:blue;">-->
             <!-- forecast picture section-->
         <!--</section>-->
-    </section>
-    
-    <section id="forecast">
-        <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
-        <div>
-            <a href="" ng-show="forecastdays===4" ng-click="seven_days()">(7-day)</a>
-            <!--<a href="" ng-show="forecastdays===8" ng-click="three_days()">(3-day)</a>-->
-        </div>
         
-        <!--<scroller>-->
-        <!--    <div id="forecast-prev" class="scroll-button" ng-click="previous()">prev</div>-->
-        <!--    <ul>-->
-        <!--        <li class="ib a" id="li{{$index}}" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">-->
-        <!--            <p>{{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}}</p>-->
-        <!--            <p>{{day.conditions}}</p>-->
-        <!--            <p>High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span></p>-->
-        <!--            <p>Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span></p>-->
-        <!--            <forecast-icon class="forecast-icons" icon="day.icon"></forecast-icon>-->
-        <!--        </li>-->
-        <!--    </ul>-->
-        <!--    <div id="forecast-next" class="scroll-button" ng-click="next()">next</div>-->
-        <!--</scroller>-->
-        
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
-                    <p>{{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}}</p>
-                    <p>{{day.conditions}}</p>
-                    <p>High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span></p>
-                    <p>Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span></p>
-                    <forecast-icon class="forecast-icons" icon="day.icon"></forecast-icon>
-                </div>
+        <section id="forecast">
+            <h3><span ng-show="forecastdays===4">3</span><span ng-show="forecastdays===8">7</span>-day Forecast</h3>
+            <div>
+                <a href="" ng-show="forecastdays===4" ng-click="seven_days()">(7-day)</a>
+                <!--<a href="" ng-show="forecastdays===8" ng-click="three_days()">(3-day)</a>-->
             </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
             
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <!--<scroller>-->
+            <!--    <div id="forecast-prev" class="scroll-button" ng-click="previous()">prev</div>-->
+            <!--    <ul>-->
+            <!--        <li class="ib a" id="li{{$index}}" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">-->
+            <!--            <p>{{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}}</p>-->
+            <!--            <p>{{day.conditions}}</p>-->
+            <!--            <p>High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span></p>-->
+            <!--            <p>Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span></p>-->
+            <!--            <forecast-icon class="forecast-icons" icon="day.icon"></forecast-icon>-->
+            <!--        </li>-->
+            <!--    </ul>-->
+            <!--    <div id="forecast-next" class="scroll-button" ng-click="next()">next</div>-->
+            <!--</scroller>-->
             
-            <!-- If we need scrollbar -->
-            <!--<div class="swiper-scrollbar"></div>-->
-        </div>
-        
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" ng-repeat="day in data.forecast" ng-if="$index > 0 && $index < forecastdays">
+                        <p>{{day.date.weekday}}, {{day.date.monthname}} {{day.date.day}}</p>
+                        <p class="swiper-conditions">{{day.conditions}}</p>
+                        <p>High: <span ng-show="farenheit">{{day.high.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.high.celsius}}&deg;C</span></p>
+                        <p>Low: <span ng-show="farenheit">{{day.low.fahrenheit}}&deg;F</span><span ng-hide="farenheit">{{day.low.celsius}}&deg;C</span></p>
+                        <forecast-icon class="forecast-icons" icon="day.icon"></forecast-icon>
+                    </div>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+                
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                
+                <!-- If we need scrollbar -->
+                <!--<div class="swiper-scrollbar"></div>-->
+            </div>
+        </section>
     </section>
     
-    <section>
-        <section class="ib" id="precip-analysis">
+    <section id="analysis-container">
+        <section class="ib analysis" id="precip-analysis">
             <div id="pa-container">
-                <div id="pa-title">
+                <div id="pa-title" class="analysis-title">
                     <div ng-show="forecastdays===4">
                         <h3 ng-show="{{data.precipAnalysis.precip_three_bool}}">
-                            PRECIP FORECASTED NEXT 3 DAYS <a href="" ng-click="pa_details = true">details</a>
+                            Precipitation forecasted in next 3 days <a href="" ng-click="pa_details = true">details</a>
                         </h3>
-                        <h3 ng-hide="{{data.precipAnalysis.precip_three_bool}}">NO PRECIP FORECASTED NEXT 3 DAYS</h3>
+                        <h3 ng-hide="{{data.precipAnalysis.precip_three_bool}}">No precipitation forecasted in the next 3 days</h3>
                     </div>
                     <div ng-show="forecastdays===8">
                         <h3 ng-show="{{data.precipAnalysis.precip_seven_bool}}">
-                            PRECIP FORECASTED NEXT 7 DAYS <a href="" ng-click="pa_details = true">details</a>
+                            Precipitation forecasted next 7 days 
+                            <a href="" ng-show="pa_details === false" ng-click="pa_details = true">expand</a>
+                            <a href="" ng-show="pa_details === true" ng-click="pa_details = false">collapse</a>
                         </h3>
-                        <h3 ng-hide="{{data.precipAnalysis.precip_seven_bool}}">NO PRECIP FORECASTED NEXT 7 DAYS</h3>
+                        <h3 ng-hide="{{data.precipAnalysis.precip_seven_bool}}">No precipitation forecasted in the next 7 days</h3>
                     </div>
                 </div>
                 <div id="pa-details" ng-show="pa_details">
@@ -122,22 +127,27 @@
                     </ul>
                 </div>
             </div>
-        </section><section class="ib" id="weekend-analysis">
+        </section><section class="ib analysis" id="weekend-analysis">
             <div id="wa-container">
-                <h3 id="wa-title">
-                    10-day Weekend Outlook
+                <h3 id="wa-title" class="analysis-title">
+                    Weekend Outlook
+                    <a href="" ng-show="wa_details === false" ng-click="wa_details = true">expand</a>
+                    <a href="" ng-show="wa_details === true" ng-click="wa_details = false">collapse</a>
                 </h3>
-                <div id="wa-details">
+                <div id="wa-details" ng-show="wa_details">
                     <ul>
                         <!-- 
                             need to increase precip data to include current day and range to 10 days to accommodate the 10-day 
                             weekend outlook or filter the weekend outlook to exclude the current day and limit to 7 day weekend 
                             outlook.   
                         -->
-                        <li ng-repeat="day2 in data.forecast | filter: filter_weekend">{{day2.date.monthname}}{{day2.date.day}}
+                        <li ng-repeat="day2 in data.forecast | filter: filter_weekend">
+                            <p>{{day2.date.monthname}} {{day2.date.day}}</p>
+                            <p>{{day2.conditions}}</p>
                             <div ng-repeat="day in data.precipAnalysis.precip_data">
                                 <precip-warning ng-if="day2.date.day === day.day && day.rain" ng-data-obj="{{day}}" ng-data-type="rain">Rain {{day.rain}} in.</precip-warning>
                                 <precip-warning ng-if="day2.date.day === day.day && day.snow" ng-data-obj="{{day}}" ng-data-type="snow">Snow {{day.snow}} in.</precip-warning>
+                                <span ng-if="day2.date.day === day.day && day.rain === 0 && day.snow ===0">No precipitation forecasted.</span>
                             </div>
                         </li>
                     </ul>
