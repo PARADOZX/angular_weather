@@ -131,6 +131,8 @@ header:after {
 }
 #home-container {
     margin-top: 30px;
+    /*background: linear-gradient(to bottom, #FFD285, #FFFF85, #BCFFB0);*/
+    background: linear-gradient(to bottom, #FFD285, #FFFF85);
 }
 #top-bar {
     padding: 10px 30px;
