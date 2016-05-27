@@ -42,7 +42,7 @@ button {
     background-color: red;
 }
 #current-desc {
-    color: #a6842e;
+    color: #000000;
     font-size: 32px;
     font-weight: bold;
 }
@@ -62,7 +62,7 @@ button {
     height: 200px;
 }
 #current-temp {
-    color: #a6842e;
+    color: #000000;
     font-size: 42px;
     font-weight: bold;
 }
@@ -115,27 +115,32 @@ header:after {
 }
 #header-search button {
     width: 170px;
-    height: 15px;
+    height: 25px;
     font-size: 10px;
-    background-color: #147efb;
+    background-color: #15306E;
     border: none;
     border-radius: 3px;
     color: #ffffff;
 }
 #header-search input[type="text"] {
     width: 170px;
-    height: 15px;
+    height: 25px;
     font-size: 10px;
     text-align: center;
+    border: 1px #ddd solid;
     border-radius: 3px;
+    box-sizing: border-box;
 }
 #home-container {
     margin-top: 30px;
-    /*background: linear-gradient(to bottom, #FFD285, #FFFF85, #BCFFB0);*/
-    background: linear-gradient(to bottom, #FFD285, #FFFF85);
 }
-#top-bar {
-    padding: 10px 30px;
+input[type="text"]:focus {
+    outline:none; 
+    border-color:#9ecaed;
+    box-shadow:0 0 15px #9ecaed;
+}
+#location-citystate {
+    font-size: 20px;
 }
 #location-time {
     font-size: 12px;
@@ -146,24 +151,24 @@ header:after {
 #main-header {
     height: 110px;   
 }
-#main-header:after {
-    content: "";
-    display: block;
-    height: 2px;
-    width: 95%;
-    margin: 0 auto;
-    background: black;
-}
+/*#main-header:after {*/
+/*    content: "";*/
+/*    display: block;*/
+/*    height: 2px;*/
+/*    width: 95%;*/
+/*    margin: 0 auto;*/
+/*    background: black;*/
+/*}*/
 #main-header h1 {
     position: relative;
     top: 50%;
     margin-left: 30px;
     transform: translateY(-50%);
+    letter-spacing: 10px;
 }
 .margin-center {
     margin: 0 auto;
 }
-
 .menu-lines {
     margin-top: 5px;
     height: 3px;
@@ -198,7 +203,7 @@ header:after {
     margin: 30px;
 }
 #pa-details ul li, #wa-details ul li {
-    background-color: #EDB7B7;
+    background-color: #FCFE7C;
     margin: 5px auto;
     border-radius: 10px;
     text-align: center;
@@ -252,17 +257,22 @@ header:after {
 }
 #temp-toggle {
     float: right;
+    margin-top: 20px;
 }
 #temp-toggle a {
     text-decoration: none;
     margin-left: 10px;
     padding: 10px;
-    background-color: skyblue;
+    background-color: #790006;
+    color: #ffffff;
 }
 #title-header {
     margin: 70px;
     font-size: 42px;
     text-align: center;
+}
+#top-bar {
+    padding: 10px 30px;
 }
 /*#wa-title {*/
 /*    text-transform: uppercase;*/
@@ -279,7 +289,7 @@ header:after {
 .full-length-search button {
     width: 100%;
     height: 30px;
-    background-color: #147efb;
+    background-color: #15306E;
     border: none;
     border-radius: 3px;
     color: #ffffff;
@@ -293,13 +303,19 @@ header:after {
     height:30px;
     text-align: center;
     border-radius: 3px;
+    border: 1px #ddd solid;
+    box-sizing: border-box;
 }
 @media screen and (max-width: 450px) {
+    #main-header h1 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
     .full-length-search form {
         width: 90%;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 740px) {
     #current-forecast, #precip-analysis, #weekend-analysis {
         width: 100%;
     }
@@ -322,7 +338,7 @@ header:after {
         display: none;
     }
 }
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 741px) {
     #mobile-menu {
         display: none !important;   
     }

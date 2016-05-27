@@ -1,5 +1,7 @@
 app.controller('homepageCtrl', ['$scope', '$location', '$rootScope','cityWeatherData', 'slider', function($scope, $location, $rootScope, cityWeatherData, slider){
 
+    // var weekendcount = 0;
+
     //redirect to title page if cityWeatherData cache not populated
     if(Object.keys(cityWeatherData.getCache()).length === 0) $location.path('/');
 
@@ -10,7 +12,14 @@ app.controller('homepageCtrl', ['$scope', '$location', '$rootScope','cityWeather
     };
     
     $scope.filter_weekend = function(element) {
-        if ( element.date.weekday == "Saturday" || element.date.weekday == "Sunday") return true;  
+        // weekendcount++;
+        if ( element.date.weekday == "Saturday" || element.date.weekday == "Sunday") {
+            // console.log(weekendcount);
+            // weekendcount++;
+            return true;  
+        }
+        // console.log(weekendcount);
+        // weekendcount++;
         return false;
     };
     
