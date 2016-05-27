@@ -5,7 +5,7 @@
     padding: 0;
 }
 #advisory {
-    background-color: #de002d;
+    background-color: #790006;
     padding-left: 30px;
     padding-right: 30px;
     color: white;
@@ -16,6 +16,9 @@
     color: white;
     text-transform: uppercase;
     letter-spacing: 10px;
+}
+#advisory ul {
+    text-align: center;
 }
 .analysis .analysis-title {
     height: 70px;
@@ -141,6 +144,7 @@ input[type="text"]:focus {
 }
 #location-citystate {
     font-size: 20px;
+    font-weight: 600;
 }
 #location-time {
     font-size: 12px;
@@ -263,7 +267,7 @@ input[type="text"]:focus {
     text-decoration: none;
     margin-left: 10px;
     padding: 10px;
-    background-color: #790006;
+    background-color: #365BB3;
     color: #ffffff;
 }
 #title-header {
@@ -273,6 +277,7 @@ input[type="text"]:focus {
 }
 #top-bar {
     padding: 10px 30px;
+    height: 50px;
 }
 /*#wa-title {*/
 /*    text-transform: uppercase;*/
