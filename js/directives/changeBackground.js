@@ -33,8 +33,9 @@ app.directive('changeBackground', function(httpService){
                       'Clear' : ['#FFD285','#FFFF85'],
                       'Partly Cloudy' : ['#FFD285','#4A537D'],
                       'Overcast' : ['#CCD0E3','#4A537D'],
-                      'Thunderstorm' : ['',''],
-                      'Chance of a Thunderstorm' : ['','']
+                      'Thunderstorm' : ['#CCD0E3','#4A537D'],
+                      'Chance of a Thunderstorm' : ['#CCD0E3','#4A537D'],
+                      'Rain' : ['#CCD0E3','#4A537D']
                 };
                 
                 if(forecast) {
