@@ -136,11 +136,6 @@
                 </h3>
                 <div id="wa-details" ng-show="wa_details">
                     <ul>
-                        <!-- 
-                            need to increase precip data to include current day and range to 10 days to accommodate the 10-day 
-                            weekend outlook or filter the weekend outlook to exclude the current day and limit to 7 day weekend 
-                            outlook.   
-                        -->
                         <li ng-repeat="day2 in data.forecast | filter: filter_weekend">
                             <p>{{day2.date.monthname}} {{day2.date.day}}</p>
                             <p>{{day2.conditions}}</p>
