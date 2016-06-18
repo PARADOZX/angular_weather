@@ -299,7 +299,7 @@ app.directive('forecastIcon', function(httpService){
             if(scope.icon) {
                 var icon = scope.icon,
                     icon_lc = icon.replace(/\s/g, '').toLowerCase(),
-                    icon_path = "img/" + icon_lc + ".png",
+                    icon_path = "assets/img/" + icon_lc + ".png",
                     currentURL = window.location.href,
                     newURL = currentURL.substring(0, currentURL.indexOf('index'));
                 

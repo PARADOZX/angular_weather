@@ -3,8 +3,8 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');  
 var uglify = require('gulp-uglify');  
 
-var jsFiles = 'js/**/*.js',  
-    jsDest = 'js_dist';
+var jsFiles = 'assets/javascripts/**/*.js',  
+    jsDest = 'assets/js_dist';
 
 gulp.task('scripts', function() {  
     return gulp.src(jsFiles)
